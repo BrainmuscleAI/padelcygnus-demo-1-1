@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --surface-color: #f0f4f8;
+  --surface-color-dark: #e1e8f0;
+  --text-primary: #2d4a6d;
+  --text-secondary: #4a6785;
+  --accent-color: #60a5fa;
+  --shadow-dark: rgba(163, 174, 190, 0.5);
+  --shadow-light: rgba(255, 255, 255, 0.9);
+}
+
+[data-theme='dark'] {
+  --surface-color: #1a202c;
+  --surface-color-dark: #141821;
+  --text-primary: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --accent-color: #60a5fa;
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+  --shadow-light: rgba(26, 32, 44, 0.9);
+}
+
+@layer components {
+  .neumorph {
+    @apply rounded-xl bg-[var(--surface-color)] shadow-[8px_8px_16px_var(--shadow-dark),-8px_-8px_16px_var(--shadow-light)] transition-all duration-300;
+  }
+
+  .neumorph-button {
+    @apply neumorph hover:shadow-[12px_12px_20px_var(--shadow-dark),-12px_-12px_20px_var(--shadow-light)] active:shadow-[inset_6px_6px_12px_var(--shadow-dark),inset_-6px_-6px_12px_var(--shadow-light)] hover:translate-y-[-2px];
+  }
+
+  .neumorph-pressed {
+    @apply rounded-xl bg-[var(--surface-color)] shadow-[inset_6px_6px_12px_var(--shadow-dark),inset_-6px_-6px_12px_var(--shadow-light)];
+  }
+
+  .neumorph-avatar {
+    @apply rounded-full bg-[var(--surface-color)] shadow-[4px_4px_8px_var(--shadow-dark),-4px_-4px_8px_var(--shadow-light)];
+  }
+
+  .neumorph-icon {
+    @apply text-[var(--accent-color)];
+  }
+
+  .hover-lift {
+    @apply hover:translate-y-[-4px] hover:shadow-[12px_12px_20px_var(--shadow-dark),-12px_-12px_20px_var(--shadow-light)];
+  }
+
+  .card-container {
+    @apply rounded-2xl p-1 bg-gradient-to-br from-[var(--shadow-light)] to-[var(--shadow-dark)];
+  }
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-blue-500;
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+/* Parallax effect */
+.parallax-bg {
+  transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform;
+}
